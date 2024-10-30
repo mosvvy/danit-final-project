@@ -13,6 +13,12 @@ def predict(method):
     data = get_data()
     data = data_preprocessing(data)
 
+    X = data.drop("int.rate", axis=1).drop("revol.util", axis=1)
+    X = data.drop("inq.last.6mths", axis=1)
+    X = data.drop("days.with.cr.line", axis=1)
+    X = data.drop("revol.bal", axis=1)
+    X = data.drop("installment", axis=1)
+
     X = data.drop("not.fully.paid", axis=1)
     y = data["not.fully.paid"]
 

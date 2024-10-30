@@ -23,19 +23,19 @@ PURPOSES = (
 )# get_purposes()
 
 class CheckForm(forms.Form):
-    credit_policy = forms.IntegerField()
-    purpose = forms.ChoiceField(choices = PURPOSES)
-    int_rate = forms.FloatField()
-    installment = forms.FloatField()
-    log_annual_inc = forms.FloatField()
-    dti = forms.FloatField()
-    fico = forms.IntegerField()
-    days_with_cr_line = forms.FloatField()
-    revol_bal = forms.IntegerField()
-    revol_util = forms.FloatField()
-    inq_last_6mths = forms.IntegerField()
-    delinq_2yrs = forms.IntegerField()
-    pub_rec = forms.IntegerField()
+    credit_policy = forms.IntegerField(label="Кредитна політика")
+    purpose = forms.ChoiceField(label="Мета ", choices = PURPOSES)
+    # int_rate = forms.FloatField()
+    # installment = forms.FloatField()
+    log_annual_inc = forms.FloatField(label="Натуральний показник річного доходу")
+    dti = forms.FloatField(label="Співвідношення кредиту до доходу позичальника")
+    fico = forms.IntegerField(label="FICO")
+    # days_with_cr_line = forms.FloatField()
+    # revol_bal = forms.IntegerField()
+    # revol_util = forms.FloatField()
+    # inq_last_6mths = forms.IntegerField()
+    delinq_2yrs = forms.IntegerField(label="Затримка на 30+ за 2 роки")
+    pub_rec = forms.IntegerField(label="Кількість негативних відгуків")
 
 
 def check(request):
@@ -44,25 +44,19 @@ def check(request):
     form = CheckForm(request.POST or None)
     if form.is_valid():
         context['res'] = "predict_by_value(df)"
-        # subject = form.cleaned_data["subject"]
-        # message = form.cleaned_data["message"]
-        # sender = form.cleaned_data["sender"]
-        # cc_myself = form.cleaned_data["cc_myself"]
-        #
-        # recipients = ["info@example.com"]
 
         input_val = {
             "credit.policy": form.cleaned_data["credit_policy"],
             "purpose": [form.cleaned_data["purpose"]],
-            "int.rate": [form.cleaned_data["int_rate"]],
-            "installment": [form.cleaned_data["installment"]],
+            # "int.rate": [form.cleaned_data["int_rate"]],
+            # "installment": [form.cleaned_data["installment"]],
             "log.annual.inc": [form.cleaned_data["log_annual_inc"]],
             "dti": [form.cleaned_data["dti"]],
             "fico": [form.cleaned_data["fico"]],
-            "days.with.cr.line" : [form.cleaned_data["days_with_cr_line"]],
-            "revol.bal": [form.cleaned_data["revol_bal"]],
-            "revol.util": [form.cleaned_data["revol_util"]],
-            "inq.last.6mths": [form.cleaned_data["inq_last_6mths"]],
+            # "days.with.cr.line" : [form.cleaned_data["days_with_cr_line"]],
+            # "revol.bal": [form.cleaned_data["revol_bal"]],
+            # "revol.util": [form.cleaned_data["revol_util"]],
+            # "inq.last.6mths": [form.cleaned_data["inq_last_6mths"]],
             "delinq.2yrs": [form.cleaned_data["delinq_2yrs"]],
             "pub.rec": [form.cleaned_data["pub_rec"]],
             }

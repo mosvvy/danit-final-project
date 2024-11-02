@@ -1,7 +1,3 @@
-from django.db import models
-
-from Analytics.data_loader import get_purposes
-
 # Create your models here.
 
 # PURPOSES = [

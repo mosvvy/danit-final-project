@@ -1,9 +1,9 @@
 import pandas as pd
 
-FPATH = 'Analytics/loan_data.csv'
+FPATH = 'loan_data.csv'
 
-def get_data():
-    data = pd.read_csv(FPATH)
+def get_data(file_path=FPATH):
+    data = pd.read_csv(file_path)
     return data
 
 def get_purposes():
